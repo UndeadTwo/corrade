@@ -219,6 +219,9 @@ for(Foo& f: e) new(&f) Foo(index++);
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4700)
 #endif
 {
 typedef std::uint64_t GLuint;
@@ -245,6 +248,8 @@ Containers::Array<char, UnmapBuffer> array{data, bufferSize, UnmapBuffer{buffer}
 }
 #if defined(__clang__) || defined(__GNUC__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 
 {
@@ -275,6 +280,9 @@ static_cast<void>(b);
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4700)
 #endif
 {
 /* [ArrayView-usage] */
@@ -295,6 +303,8 @@ static_cast<void>(b);
 }
 #if defined(__clang__) || defined(__GNUC__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 
 {
@@ -312,6 +322,9 @@ static_cast<void>(b);
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4700)
 #endif
 {
 /* [arrayView] */
@@ -324,6 +337,8 @@ static_cast<void>(b);
 }
 #if defined(__clang__) || defined(__GNUC__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 
 {
@@ -386,6 +401,9 @@ static_cast<void>(threeInts);
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4700)
 #endif
 {
 /* [staticArrayView] */
@@ -398,6 +416,8 @@ static_cast<void>(b);
 }
 #if defined(__clang__) || defined(__GNUC__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 
 {
@@ -481,10 +501,12 @@ for(Object* i = list.first(); i; i = i->next()) {
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4700)
 #endif
 {
 Object *item, *before;
-Containers::LinkedList<Object> list;
 /* [LinkedList-move] */
 if(item != before) {
     list.cut(item);
@@ -499,6 +521,8 @@ delete item;
 }
 #if defined(__clang__) || defined(__GNUC__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 }
 
@@ -535,6 +559,7 @@ auto b = Containers::optional<std::string>('a', 'b');
 /* [ScopeGuard-usage] */
 #endif
 
+{
 /* [ScopeGuard-lambda] */
 FILE* f{};
 
@@ -548,6 +573,7 @@ FILE* f{};
 
 // f is nullptr again
 /* [ScopeGuard-lambda] */
+}
 
 /* [ScopeGuard-returning-lambda] */
 {
@@ -693,6 +719,9 @@ static_cast<void>(rgba);
 #elif defined(__GNUC__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4700)
 #endif
 {
 /* [pointer] */
@@ -704,6 +733,8 @@ auto b = Containers::pointer(ptr);
 }
 #if defined(__clang__) || defined(__GNUC__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 
 {

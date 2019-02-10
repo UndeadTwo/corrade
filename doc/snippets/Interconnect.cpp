@@ -45,6 +45,7 @@ class Postman: public Interconnect::Emitter {
 };
 /* [Emitter-signals] */
 
+{
 /* [Emitter-emit] */
 Postman postman;
 postman.messageDelivered("hello");
@@ -62,10 +63,14 @@ c.disconnect();
 c.connect();
 // ...
 /* [Emitter-connect] */
+}
 
 #if defined(__GNUC__) || defined( __clang__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
+#elif defined(_MSC_VER)
+#pragma warning(push)
+#pragma warning(disable: 4100)
 #endif
 {
 /* [Emitter-connect-member-slot] */
@@ -82,6 +87,8 @@ Interconnect::connect(postman, &Postman::messageDelivered,
 }
 #if defined(__GNUC__) || defined( __clang__)
 #pragma GCC diagnostic pop
+#elif defined(_MSC_VER)
+#pragma warning(pop)
 #endif
 
 {
